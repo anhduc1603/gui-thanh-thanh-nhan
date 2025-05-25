@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gửi Thanh Thanh Nhàn nhaaa</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Quicksand", sans-serif;
+        background: #fff5f7;
+        color: #444;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        transition: background 0.5s ease;
+      }
+
+      .container {
+        max-width: 600px;
+        width: 90%;
+        padding: 20px;
+        background: #ffeef0;
+        border-radius: 20px;
+        box-shadow: 0 8px 16px rgba(255, 0, 100, 0.2);
+        text-align: center;
+        transition: all 0.5s ease;
+      }
+
+      .slide {
+        display: none;
+        font-size: 1.4rem;
+      }
+
+      .slide.active {
+        display: block;
+      }
+
+      .next-btn,
+      .restart-btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 20px;
+        background: #ff87ab;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+      }
+
+      .next-btn:hover,
+      .restart-btn:hover {
+        background: #ff5e94;
+      }
+
+      .restart-btn {
+        background: #66d1b0;
+        display: none;
+      }
+
+      .restart-btn:hover {
+        background: #44c0a0;
+      }
+
+      @media (max-width: 600px) {
+        .slide {
+          font-size: 1.2rem;
+        }
+
+        .next-btn,
+        .restart-btn {
+          padding: 8px 16px;
+          font-size: 0.9rem;
+        }
+      }
+
+      .final-theme {
+        background-color: #e0f7f1 !important;
+      }
+
+      .final-container {
+        background-color: #ccf2e7 !important;
+        box-shadow: 0 8px 16px rgba(0, 150, 100, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="slideContainer">
+      <div class="slide active">
+        🌸 Chào bạn đến với thế giới dễ thương của chúng mình!
+      </div>
+
+      <div class="slide">
+        🐰 Hi, chào Nhàn nha 👋<br />
+        Tớ là Đức nè. Từ lâu tớ đã rất muốn làm quen với cậu,<br />
+        nhưng mà chưa khi nào có cơ hội gặp trực tiếp cả.
+      </div>
+
+      <div class="slide">
+        🌟 Tớ biết cậu là một cô gái xinh đẹp và luôn nỗ lực trong cuộc sống.<br />
+        Điều đó càng khiến tớ muốn tìm hiểu và làm quen với cậu hơn nữa.<br />
+        Không phải kiểu "crush sét đánh" đâu 😅<br />
+        Mà là thật sự muốn hiểu thêm về một người thú vị như cậu.
+      </div>
+
+      <div class="slide">
+        🧠 Tớ hiểu – tự nhiên có người lạ nhắn tin thì... cũng hơi kỳ đúng
+        không?<br />
+        Nhất là khi hai người chưa thân, hoặc chưa gặp ngoài đời.<br />
+        Vậy nên, đừng lo – tớ không ép cậu trả lời liền đâu nè 🐢
+      </div>
+
+      <div class="slide">
+        ☕ Nếu cậu thấy thoải mái, tớ chỉ mong tụi mình có thể bắt đầu trò
+        chuyện một chút,<br />
+        nhẹ nhàng – chậm rãi – không gượng ép gì cả.<br />
+        Như hai người bạn mới đang... thử chạm vào thế giới của nhau 🐣
+      </div>
+
+      <div class="slide">
+        😄 Không deadline, không KPI, không ràng buộc gì hết á.<br />
+        Chỉ cần cậu thấy vui, hoặc chỉ cần cậu hơi tò mò "thằng này là ai vậy
+        trời?"<br />
+        Là tớ có lý do để nhắn tiếp rồi nè 😂
+      </div>
+
+      <div class="slide">
+        🎯 Vậy… nếu tớ xin được làm bạn với cậu –<br />
+        thì... cậu có đồng ý không nè? 🙈<br />
+        (Chỉ cần cậu gật nhẹ trong lòng cũng đủ làm tớ cười cả ngày rồi đó!)
+      </div>
+
+      <div class="slide">
+        🌼 Cảm ơn cậu đã đọc hết mấy dòng "dài như truyện ngôn tình" của tớ
+        😅<br />
+        Chúc cậu một ngày dịu dàng và dễ thương như chính cậu vậy đó 🌷
+      </div>
+
+      <button class="next-btn" id="nextBtn" onclick="nextSlide()">
+        Tiếp ➜
+      </button>
+      <button class="restart-btn" id="restartBtn" onclick="restartSlides()">
+        Đọc lại xem tớ viết gì nào
+      </button>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const nextBtn = document.getElementById("nextBtn");
+      const restartBtn = document.getElementById("restartBtn");
+      const body = document.body;
+      const container = document.getElementById("slideContainer");
+
+      function nextSlide() {
+        slides[currentSlide].classList.remove("active");
+        currentSlide++;
+
+        if (currentSlide < slides.length) {
+          slides[currentSlide].classList.add("active");
+
+          if (currentSlide === slides.length - 1) {
+            body.classList.add("final-theme");
+            container.classList.add("final-container");
+            nextBtn.style.display = "none";
+            restartBtn.style.display = "inline-block";
+          }
+        }
+      }
+
+      function restartSlides() {
+        slides[currentSlide].classList.remove("active");
+        currentSlide = 0;
+        slides[currentSlide].classList.add("active");
+
+        // Reset màu nền và nút
+        body.classList.remove("final-theme");
+        container.classList.remove("final-container");
+        nextBtn.style.display = "inline-block";
+        restartBtn.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
